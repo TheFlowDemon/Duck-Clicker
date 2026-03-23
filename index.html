@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🐥 Canard Clicker</title>
+<title>🐥 Duck Clicker</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -28,8 +28,8 @@ body.dark{
   color:#E8E8FF;
   /* --bg NOT overridden here — world classes set the body background directly */
 }
-html,body{width:100%;height:100%;font-family:var(--font);font-size:16px;color:var(--txt);overflow:hidden;transition:background .3s,color .3s}
-body{display:flex;flex-direction:column;background:var(--bg)}
+html,body{width:100%;height:100%;height:100dvh;font-family:var(--font);font-size:16px;color:var(--txt);overflow:hidden;transition:background .3s,color .3s}
+body{display:flex;flex-direction:column;background:var(--bg);height:100vh;height:100dvh;overflow:hidden}
 
 /* WORLD THEMES */
 body.world-ice{background:#B3E5FC!important}
@@ -75,7 +75,7 @@ body.world-cyber #hdr-coins{background:#00E676;border-color:#004D40}
 @keyframes screenIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
 /* NAVBAR */
-#nav{flex-shrink:0;height:56px;background:var(--nav-bg);border-top:var(--border);box-shadow:0 -3px 0 var(--ink);display:flex;transition:background .3s;position:relative;z-index:9999}
+#nav{flex-shrink:0;height:56px;background:var(--nav-bg);border-top:var(--border);box-shadow:0 -3px 0 var(--ink);display:flex;transition:background .3s;position:relative;z-index:9999;padding-bottom:env(safe-area-inset-bottom,0px)}
 
 /* NAVBAR */
 .nb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;border:none;background:none;cursor:pointer;font-family:var(--font);font-size:.6rem;font-weight:700;color:var(--txt3);touch-action:manipulation;min-width:0;overflow:hidden;transition:background .15s,color .15s}
@@ -86,7 +86,7 @@ body.world-cyber #hdr-coins{background:#00E676;border-color:#004D40}
 .nb.nb-asc.on{background:linear-gradient(135deg,#4A0072,#7B1FA2);border-top-color:#FFE234}
 
 /* GAME */
-#sg{padding:11px 10px 14px;gap:10px;background:var(--bg)}
+#sg{padding:6px 10px 8px;gap:6px;background:var(--bg)}
 .info-bar{width:100%;background:var(--surface);border:var(--border);border-radius:var(--card-r);box-shadow:var(--shadow);padding:8px 13px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;gap:6px}
 .ib-lbl{font-size:.6rem;font-weight:600;color:var(--txt3);text-transform:uppercase;letter-spacing:.4px}
 .ib-val{font-size:1.05rem;font-weight:700;color:var(--c-blue)}
@@ -113,7 +113,7 @@ body.world-cyber .ib-world-name{color:#00E676}
 @keyframes rpl{0%{transform:scale(.75);opacity:.8}100%{transform:scale(1.4);opacity:0}}
 
 /* Duck idle: gentle breathing */
-#duck{position:relative;z-index:2;flex-shrink:0;width:clamp(96px,29vw,122px);height:clamp(96px,29vw,122px);font-size:clamp(62px,18vw,80px);line-height:clamp(96px,29vw,122px);text-align:center;background:none;border:none;cursor:pointer;touch-action:manipulation;filter:drop-shadow(0 5px 0 rgba(0,0,0,.2));animation:duckIdle 3.2s ease-in-out infinite;will-change:transform;transform-origin:50% 60%}
+#duck{position:relative;z-index:2;flex-shrink:0;width:clamp(80px,22vw,110px);height:clamp(80px,22vw,110px);font-size:clamp(52px,14vw,70px);line-height:clamp(80px,22vw,110px);text-align:center;background:none;border:none;cursor:pointer;touch-action:manipulation;filter:drop-shadow(0 5px 0 rgba(0,0,0,.2));animation:duckIdle 3.2s ease-in-out infinite;will-change:transform;transform-origin:50% 60%}
 @keyframes duckIdle{
   0%,100%{transform:translateY(0) scaleX(1) scaleY(1) rotate(-1.5deg)}
   25%  {transform:translateY(-6px) scaleX(.97) scaleY(1.04) rotate(1deg)}
@@ -845,18 +845,18 @@ body.dark .ly-btn.on{background:#7B1FA2;border-color:#CE93D8}</style>
 <div id="cc-overlay">
   <div id="cc-box">
     <div id="cc-logo">🐥</div>
-    <div id="cc-title">Canard Clicker</div>
-    <div id="cc-sub">Choisissez votre mode d'affichage</div>
+    <div id="cc-title">Duck Clicker</div>
+    <div id="cc-sub">Choose your display mode</div>
     <div id="cc-btns">
       <button class="cc-btn" id="cc-btn-mobile">
         <span class="cc-ico">📱</span>
         <span class="cc-lbl">Mobile</span>
-        <span class="cc-desc">Format vertical centré</span>
+        <span class="cc-desc">Centered vertical</span>
       </button>
       <button class="cc-btn" id="cc-btn-pc">
         <span class="cc-ico">💻</span>
         <span class="cc-lbl">PC</span>
-        <span class="cc-desc">Mise en page large</span>
+        <span class="cc-desc">Wide layout</span>
       </button>
     </div>
   </div>
@@ -867,7 +867,7 @@ body.dark .ly-btn.on{background:#7B1FA2;border-color:#CE93D8}</style>
 
 <div id="flash"></div>
 <div id="rank-toast"></div>
-<div id="asc-msg"><div id="asc-msg-box"><p id="asc-msg-p" data-i18n="asc_msg_text">✨ Vous vous élevez<br>au rang de Divinité... ✨</p></div></div>
+<div id="asc-msg"><div id="asc-msg-box"><p id="asc-msg-p" data-i18n="asc_msg_text">✨ You ascend<br>to the rank of Divinity... ✨</p></div></div>
 <div id="boost-bar"><span class="bspin">⚡</span><span id="blbl">BOOST ×7</span><div id="bcd">15s</div><span class="bspin">⚡</span></div>
 <div id="volcano-ui"><div id="vb-cnt">0/10</div><div id="vb-bar"><div id="vb-fill"></div></div></div>
 
@@ -892,15 +892,15 @@ body.dark .ly-btn.on{background:#7B1FA2;border-color:#CE93D8}</style>
 <div id="mv-modal">
   <div id="mv-box">
     <div class="mv-title">🌌 Multivers Éclaté</div>
-    <div class="mv-sub">Choisissez votre dimension. Une seule active à la fois.</div>
+    <div class="mv-sub">Choose your dimension. Only one active at a time.</div>
     <div id="mv-worlds"></div>
-    <button class="mv-btn" id="mv-leave" data-i18n="mv_leave">🌍 Retour au Monde Normal</button>
+    <button class="mv-btn" id="mv-leave" data-i18n="mv_leave">🌍 Return to Normal World</button>
     <button class="mv-btn" id="mv-close">✖ Fermer</button>
   </div>
 </div>
 
 <header id="hdr">
-  <div id="hdr-title">🐥 Canard Clicker</div>
+  <div id="hdr-title">🐥 Duck Clicker</div>
   <div id="hdr-coins">🪙 0</div>
 </header>
 
@@ -908,9 +908,9 @@ body.dark .ly-btn.on{background:#7B1FA2;border-color:#CE93D8}</style>
   <!-- JEU -->
   <main class="screen on" id="sg">
     <div class="info-bar">
-      <div><div class="ib-lbl" data-i18n="ib_cps">⚡ Par seconde</div><div class="ib-val" id="g-cps">0/s</div><div class="ib-sub" id="cyber-data" style="display:none">💾 0 Data</div></div>
+      <div><div class="ib-lbl" data-i18n="ib_cps">⚡ Per second</div><div class="ib-val" id="g-cps">0/s</div><div class="ib-sub" id="cyber-data" style="display:none">💾 0 Data</div></div>
       <div id="ib-world" style="text-align:center;flex:1"><div class="ib-world-ico" id="ib-world-ico"></div><div class="ib-world-name" id="ib-world-name"></div></div>
-      <div style="text-align:right"><div class="ib-lbl" data-i18n="ib_total">💰 Total gagné</div><div class="ib-val" id="g-tot">0</div></div>
+      <div style="text-align:right"><div class="ib-lbl" data-i18n="ib_total">💰 Total earned</div><div class="ib-val" id="g-tot">0</div></div>
     </div>
     <div class="duck-wrap">
       <div class="rpl"></div><div class="rpl"></div><div class="rpl"></div>
@@ -920,11 +920,11 @@ body.dark .ly-btn.on{background:#7B1FA2;border-color:#CE93D8}</style>
       <div id="evo-badge"></div>
     </div>
     <div id="combo-w">
-      <div id="combo-row"><span data-i18n="combo_speed">VITESSE DE CLIC</span><span id="combo-bdg"></span></div>
+      <div id="combo-row"><span data-i18n="combo_speed">CLICK SPEED</span><span id="combo-bdg"></span></div>
       <div id="bar-track"><div id="bar-fill"></div></div>
     </div>
     <div id="fury-bar-wrap">
-      <div id="fury-bar-row"><span id="fury-label" data-i18n="fury_label">⚡ Fureur</span><span id="fury-count">0/1000</span></div>
+      <div id="fury-bar-row"><span id="fury-label" data-i18n="fury_label">⚡ Fury</span><span id="fury-count">0/1000</span></div>
       <div id="fury-track"><div id="fury-fill"></div></div>
     </div>
     <div class="coin-box"><div class="cb-num" id="g-coins">0</div><div class="cb-sub" data-i18n="coins_label">🪙 COINS</div></div>
@@ -938,29 +938,29 @@ body.dark .ly-btn.on{background:#7B1FA2;border-color:#CE93D8}</style>
 
   <!-- BOUTIQUE + ASCENSION en bas -->
   <section class="screen" id="sboutique">
-    <div class="s-h" data-i18n="nav_shop_title">🛒 Boutique</div>
+    <div class="s-h" data-i18n="nav_shop_title">🛒 Shop</div>
     <div class="shop-list" id="shop-list"></div>
     <!-- Ascension section at bottom of shop -->
     <div id="asc-section">
       <div class="asc-divider"></div>
-      <div class="s-h" data-i18n="asc_divine_title" style="color:#E040FB;text-shadow:0 0 8px #AB47BC;margin-top:4px">✨ Ascension Divine</div>
+      <div class="s-h" data-i18n="asc_divine_title" style="color:#E040FB;text-shadow:0 0 8px #AB47BC;margin-top:4px">✨ Divine Ascension</div>
       <div id="feather-bar">
         <div id="fb-num">0</div>
-        <div id="fb-sub" data-i18n="feather_bar_sub">✨ PLUMES D'ÉTERNITÉ</div>
+        <div id="fb-sub" data-i18n="feather_bar_sub">✨ ETERNITY FEATHERS</div>
         <div id="fb-total" data-i18n-tpl="feather_total">Total : 0 • Ascensions : 0</div>
       </div>
-      <button id="asc-btn" disabled><span data-i18n="asc_btn">✨ S'Élever au Rang Divin</span><br><small id="asc-btn-sub" data-i18n="asc_req">Requiert 100T de coins</small></button>
+      <button id="asc-btn" disabled><span data-i18n="asc_btn">✨ Ascend to Divine Rank</span><br><small id="asc-btn-sub" data-i18n="asc_req">Requires 100T coins</small></button>
       <!-- Barre de progression vers l'Ascension -->
       <div id="asc-prog-wrap">
         <div id="asc-prog-track"><div id="asc-prog-fill"></div></div>
         <div id="asc-prog-lbl">0%</div>
       </div>
       <div id="asc-preview"></div>
-      <button id="voyager-btn" data-i18n="voyager_btn">🌌 Voyager dans le Multivers</button>
+      <button id="voyager-btn" data-i18n="voyager_btn">🌌 Travel the Multiverse</button>
       <div id="world-status"></div>
       <div id="talent-tree"></div>
       <div id="monuments-section" style="margin-top:4px">
-        <div class="tier-lbl" data-i18n="monuments_section">🏛️ Monuments Dimensionnels</div>
+        <div class="tier-lbl" data-i18n="monuments_section">🏛️ Dimensional Monuments</div>
         <div id="monuments-list"></div>
       </div>
     </div>
@@ -975,21 +975,21 @@ body.dark .ly-btn.on{background:#7B1FA2;border-color:#CE93D8}</style>
 
   <!-- PROFIL — Stats + Succès -->
   <section class="screen" id="sprofil">
-    <div class="s-h" data-i18n="profil_title">🏆 Profil</div>
+    <div class="s-h" data-i18n="profil_title">🏆 Profile</div>
     <div id="prog-switch">
       <button class="psw on" id="psw-stats" data-i18n="psw_stats" onclick="switchProg('stats')">📊 Stats</button>
-      <button class="psw" id="psw-ms" data-i18n="psw_succes" onclick="switchProg('ms')">🏆 Succès</button>
+      <button class="psw" id="psw-ms" data-i18n="psw_succes" onclick="switchProg('ms')">🏆 Achievements</button>
     </div>
     <div id="prog-stats">
       <div class="sgrid">
         <div class="sc" style="border-top-color:var(--c-blue)"><div class="sl" data-i18n="stat_coins">Coins</div><div class="sv" id="s-coins">0</div></div>
         <div class="sc" style="border-top-color:var(--c-orange)"><div class="sl" data-i18n="stat_total">Total</div><div class="sv" id="s-total">0</div></div>
-        <div class="sc" style="border-top-color:var(--c-green)"><div class="sl" data-i18n="stat_clicks">Clics</div><div class="sv" id="s-clk">0</div></div>
+        <div class="sc" style="border-top-color:var(--c-green)"><div class="sl" data-i18n="stat_clicks">Clicks</div><div class="sv" id="s-clk">0</div></div>
         <div class="sc" style="border-top-color:var(--c-purple)"><div class="sl" data-i18n="stat_coins_sec">Coins/sec</div><div class="sv" id="s-cps">0</div></div>
-        <div class="sc" style="border-top-color:var(--c-pink)"><div class="sl" data-i18n="stat_buildings">Bâtiments</div><div class="sv" id="s-bld">0</div></div>
+        <div class="sc" style="border-top-color:var(--c-pink)"><div class="sl" data-i18n="stat_buildings">Buildings</div><div class="sv" id="s-bld">0</div></div>
         <div class="sc" style="border-top-color:var(--c-teal)"><div class="sl" data-i18n="stat_peak_cps">Pic CPS</div><div class="sv" id="s-best">0</div></div>
         <div class="sc" style="border-top-color:var(--c-gold)"><div class="sl" data-i18n="stat_global_mult">×Global</div><div class="sv" id="s-mult">×1</div></div>
-        <div class="sc" style="border-top-color:var(--c-div)"><div class="sl" data-i18n="stat_feathers_short">Plumes</div><div class="sv" id="s-feath">0</div></div>
+        <div class="sc" style="border-top-color:var(--c-div)"><div class="sl" data-i18n="stat_feathers_short">Feathers</div><div class="sv" id="s-feath">0</div></div>
       </div>
       <div class="sc" style="border-top-color:var(--c-div2);margin-bottom:12px"><div class="sl" data-i18n="stat_ascensions_short">Ascensions</div><div class="sv" id="s-asc">0</div></div>
       <div class="plbl" data-i18n="stat_production">⚙️ Production</div>
@@ -1078,7 +1078,7 @@ body.dark .ly-btn.on{background:#7B1FA2;border-color:#CE93D8}</style>
 
       <div class="param-row">
         <div class="param-lbl">
-          <span data-i18n="set_music">🎵 Musique</span>
+          <span data-i18n="set_music">🎵 Music</span>
           <span class="param-val" id="lbl-bgm">50%</span>
         </div>
         <input type="range" class="pslider" id="sl-bgm" min="0" max="100" value="50">
@@ -1086,7 +1086,7 @@ body.dark .ly-btn.on{background:#7B1FA2;border-color:#CE93D8}</style>
 
       <div class="param-row">
         <div class="param-lbl">
-          <span data-i18n="set_sfx">🦆 Effets sonores</span>
+          <span data-i18n="set_sfx">🦆 Sound effects</span>
           <span class="param-val" id="lbl-sfx">80%</span>
         </div>
         <input type="range" class="pslider" id="sl-sfx" min="0" max="100" value="80">
@@ -1107,10 +1107,10 @@ body.dark .ly-btn.on{background:#7B1FA2;border-color:#CE93D8}</style>
     </div>
 
     <div class="param-section">
-      <div class="param-title" data-i18n="set_appearance">🎨 Apparence</div>
+      <div class="param-title" data-i18n="set_appearance">🎨 Appearance</div>
       <div class="param-row">
         <div class="param-lbl">
-          <span data-i18n="set_dark">🌙 Mode Sombre</span>
+          <span data-i18n="set_dark">🌙 Dark Mode</span>
           <span class="param-val" id="lbl-dark">OFF</span>
         </div>
         <button class="ptoggle" id="tog-dark">OFF</button>
@@ -1137,15 +1137,15 @@ body.dark .ly-btn.on{background:#7B1FA2;border-color:#CE93D8}</style>
     </div>
 
     <div class="param-section">
-      <div class="param-title" data-i18n="bug_section_title">🐛 Signalement de Bug</div>
-      <button class="param-btn" id="bug-report-btn" data-i18n="bug_btn">🐛 Signaler un Bug</button>
+      <div class="param-title" data-i18n="bug_section_title">🐛 Bug Report</div>
+      <button class="param-btn" id="bug-report-btn" data-i18n="bug_btn">🐛 Report a Bug</button>
     </div>
 
     <div class="param-section">
-      <div class="param-title" data-i18n="set_data">💾 Données</div>
+      <div class="param-title" data-i18n="set_data">💾 Data</div>
       <div style="display:flex;flex-direction:column;gap:9px">
-        <button class="param-btn" id="p-save" data-i18n="set_save">💾 Sauvegarder manuellement</button>
-        <button class="param-btn danger" id="p-reset"><span data-i18n="set_reset">🗑️ Réinitialiser tout</span> (5)</button>
+        <button class="param-btn" id="p-save" data-i18n="set_save">💾 Save manually</button>
+        <button class="param-btn danger" id="p-reset"><span data-i18n="set_reset">🗑️ Reset everything</span> (5)</button>
         <div id="p-reset-bar" style="display:none;height:6px;border-radius:10px;background:#eee;border:1.5px solid #EF9A9A;overflow:hidden;margin-top:-4px">
           <div id="p-reset-prog" style="height:100%;background:linear-gradient(90deg,#FF5252,#B71C1C);width:0%;transition:width .2s ease-out;border-radius:10px"></div>
         </div>
@@ -1157,7 +1157,7 @@ body.dark .ly-btn.on{background:#7B1FA2;border-color:#CE93D8}</style>
   <div id="bug-modal" class="bug-modal-bg">
     <div class="bug-modal-box">
       <div class="bug-modal-header">
-        <span>🐛 <span data-i18n="bug_modal_title">Signaler un Bug</span></span>
+        <span>🐛 <span data-i18n="bug_modal_title">Report a Bug</span></span>
         <button id="bug-modal-close" class="bug-close-btn">✖</button>
       </div>
       <div class="bug-modal-body">
@@ -1185,7 +1185,7 @@ body.dark .ly-btn.on{background:#7B1FA2;border-color:#CE93D8}</style>
 
   <!-- CLASSEMENT -->
   <section class="screen" id="sldb">
-    <div class="s-h" data-i18n="ldb_title">🏅 Classement</div>
+    <div class="s-h" data-i18n="ldb_title">🏅 Leaderboard</div>
     <div id="ldb-me-bar"></div>
     <div id="ldb-list"></div>
   </section>
@@ -1195,11 +1195,11 @@ body.dark .ly-btn.on{background:#7B1FA2;border-color:#CE93D8}</style>
 <div id="hyper-banner"><span data-i18n="hyper_banner">🔥 HYPER-CLIC !</span> <span id="hyper-cd">10s</span> 🔥</div>
 
 <nav id="nav">
-  <button class="nb on" data-s="sg"><span class="ni">🕹️</span><span data-i18n="nav_game">Jeu</span></button>
-  <button class="nb" data-s="sboutique"><span class="ni">🛒</span><span data-i18n="nav_shop">Boutique</span></button>
+  <button class="nb on" data-s="sg"><span class="ni">🕹️</span><span data-i18n="nav_game">Game</span></button>
+  <button class="nb" data-s="sboutique"><span class="ni">🛒</span><span data-i18n="nav_shop">Shop</span></button>
   <button class="nb" data-s="sindex"><span class="ni">📖</span><span data-i18n="nav_index">Index</span></button>
-  <button class="nb" data-s="sprofil"><span class="ni">🏆</span><span data-i18n="nav_profile">Profil</span></button>
-  <button class="nb" data-s="sldb"><span class="ni">🏅</span><span data-i18n="nav_rank">Rang</span></button>
+  <button class="nb" data-s="sprofil"><span class="ni">🏆</span><span data-i18n="nav_profile">Profile</span></button>
+  <button class="nb" data-s="sldb"><span class="ni">🏅</span><span data-i18n="nav_rank">Rank</span></button>
   <button class="nb" data-s="sparams"><span class="ni">⚙️</span><span data-i18n="nav_settings">Réglages</span></button>
 </nav>
 
@@ -5974,6 +5974,10 @@ setInterval(()=>{
   if(document.querySelector('#sldb.on'))renderLeaderboard();
 },10000);
 
+
+// Auto-save on tab close / hide
+window.addEventListener('beforeunload',save);
+window.addEventListener('visibilitychange',()=>{if(document.hidden)save();});
 </script>
 </body>
 </html>
